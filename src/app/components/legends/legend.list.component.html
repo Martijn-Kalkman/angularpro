@@ -1,0 +1,39 @@
+<div class="flex justify-between">
+  <div>
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-2xl">List of Legends</h1>
+      <span class="text-sm">Aantal legends: {{ legends.length }}</span>
+    </div>
+    <div class="flex flex-col">
+      <div *ngFor="let legend of legends" (click)="selectLegend(legend)">
+        {{ legend | json }}
+      </div>
+      <div class="mt-2 self-end">
+        <button class="btn btn-sm btn-primary" (click)="toevoegenLegend()">Toevoegen legend!</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="alert alert-info shadow-lg" *ngIf="!selectedLegend">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="stroke-current flex-shrink-0 w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <span>Selecteer een legend om de details te bekijken.</span>
+      </div>
+    </div>
+    <div *ngIf="selectedLegend">
+      <app-legend-detail [legend]="selectedLegend"></app-legend-detail>
+    </div>
+  </div>
+</div>

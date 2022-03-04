@@ -4,10 +4,12 @@ import { LegendDto } from '../../dto/legend.dto';
 
 @Component({
   selector: 'app-legends',
-  templateUrl: './legends.component.html',
+  templateUrl: './legend.list.component.html',
 })
-export class LegendsComponent implements OnInit {
+export class LegendListComponent implements OnInit {
   legends: LegendDto[] = [];
+
+  selectedLegend?: LegendDto;
 
   constructor(private readonly legendsService: LegendsService) {}
 
@@ -15,5 +17,13 @@ export class LegendsComponent implements OnInit {
     this.legendsService.getLegends().then((legends) => {
       this.legends = legends;
     });
+  }
+
+  selectLegend(legend: LegendDto) {
+    this.selectedLegend = legend;
+  }
+
+  toevoegenLegend() {
+    this.selectedLegend = {};
   }
 }
